@@ -1,0 +1,19 @@
+#!/bin/bash
+echo "Installing dependencies..."
+sudo apt-get update
+sudo apt-get -y install lighttpd php-cgi sqlite3 libsqlite3-dev php7.0-curl php7.0-sqlite3 build-essential libboost-all-dev libminiupnpc-dev git libssl-dev libdb++-dev
+echo "Downloading and Compiling Motocoin..."
+git clone https://github.com/motocoin-dev/motocoin
+sudo make -C /home/$SUDO_USER/motocoin/src/ -f makefile.unix
+echo "Downloading block explorer..."
+git clone https://github.com/unamis76/MotocoinExplorer
+echo "Copying block explorer files..."
+cp -a /home/$SUDO_USER/MotocoinExplorer/src/. /var/www/html/
+echo "Enabling fastcgi..."
+sudo lighty-enable-mod fastcgi-php
+echo "Restarting lighttpd..."
+/etc/init.d/lighttpd restart
+echo "Done!" 
+echo "SECURITY WARNING: PLEASE CHANGE RCP PASSWORD ON motocoin.conf FILE, LOCATED IN /home/$SUDO_USER/.motocoin!!"
+echo "THEN CHANGE motodConfig.php IN /var/www/html/config ACCORDINGLY!!"
+echo "When finished, just run ./motocoind on /home/$SUDO_USER/motocoin/src"
