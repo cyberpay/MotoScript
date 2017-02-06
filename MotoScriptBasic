@@ -7,3 +7,4 @@ git clone https://github.com/motocoin-dev/motocoin
 sudo make -C /home/$SUDO_USER/motocoin/src/ -f makefile.unix
 echo "Done!" 
 echo "Now just run ./motocoind on /home/$SUDO_USER/motocoin/src"
+echo "Run with -disablewallet or disablewallet=1 on motocoin.conf if you're running a node"
