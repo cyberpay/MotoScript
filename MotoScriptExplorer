@@ -3,10 +3,10 @@ echo "Installing dependencies..."
 sudo apt-get update
 sudo apt-get -y install lighttpd php-cgi sqlite3 libsqlite3-dev php7.0-curl php7.0-sqlite3 build-essential libboost-all-dev libminiupnpc-dev git libssl-dev libdb++-dev
 echo "Downloading and Compiling Motocoin..."
-git clone https://github.com/motocoin-dev/motocoin
+git clone https://github.com/motocoin-dev/motocoin /home/$SUDO_USER/motocoin/
 sudo make -C /home/$SUDO_USER/motocoin/src/ -f makefile.unix
 echo "Downloading block explorer..."
-git clone https://github.com/unamis76/MotocoinExplorer
+git clone https://github.com/unamis76/MotocoinExplorer /home/$SUDO_USER/MotocoinExplorer/
 echo "Copying block explorer files..."
 cp -a /home/$SUDO_USER/MotocoinExplorer/src/. /var/www/html/
 echo "Enabling fastcgi..."
